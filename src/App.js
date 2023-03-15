@@ -1,10 +1,14 @@
+import React, { useState } from 'react';
+import { Container } from '@mui/system';
+import ProfileList from './components/ProfileList';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-     
-    </div>
-  );
+    <Container maxWidth="md">
+      <ProfileList />
+    </Container>
+  )
 }
 
-export default App;
+export default App
