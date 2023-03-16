@@ -7,7 +7,6 @@ height: 156px;
 width: 166px;
 border-radius: 0;
 `
-
 const UserAvatar = ({username}) => {
   return (
     <AvatarIcon alt={username} src={`https://avatars.dicebear.com/v2/avataaars/${username}.svg?options[mood][]=happy`} />
