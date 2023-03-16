@@ -5,6 +5,7 @@ const ConfirmationDialogue = ({ isOpen, onClose, onDelete }) => {
     const handleDelete = () => {
         onDelete();
         onClose();
+        
       }
   return (
       <Dialog open={isOpen} onClose={onClose}
