@@ -3,6 +3,7 @@ import ProfileCard from "./ProfileCard";
 import { getUsers } from "../api";
 import styled from "@emotion/styled";
 import LoadingIndicator from "./Loading/LoadingIndicator";
+import Snackbar from "@mui/material/Snackbar";
 
 const CardContainer = styled.div`
   display: flex;
@@ -20,6 +21,8 @@ const CardWrapper = styled.div`
 const ProfileList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +38,8 @@ const ProfileList = () => {
   const handleDelete = (id) => {
     const updatedUsers = users.filter((user) => user.id !== id);
     setUsers(updatedUsers);
+    handleClick();
+    setMessage("Information deleted successfully");
   };
 
   const handleUpdateUser = (updatedUser) => {
@@ -45,6 +50,19 @@ const ProfileList = () => {
       return user;
     });
     setUsers(updatedUsers);
+    handleClick();
+    setMessage("Information updated successfully!!");
+  };
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -63,6 +81,12 @@ const ProfileList = () => {
               />
             </CardWrapper>
           ))}
+          <Snackbar
+            open={open}
+            autoHideDuration={5000}
+            onClose={handleClose}
+            message={message}
+          />
         </CardContainer>
       )}
     </>

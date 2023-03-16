@@ -18,6 +18,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PhoneEnabledOutlinedIcon from "@mui/icons-material/PhoneEnabledOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 
+
 const RootCard = styled(Card)`
   display: flex;
   flex-direction: column;
@@ -97,7 +98,7 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
     useState(false);
-
+ 
   const handleEditClick = () => {
     setIsEditDialogOpen(true);
   };
@@ -109,20 +110,25 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
   const handleEditSubmit = (updatedUser) => {
     onUpdate(updatedUser);
     setIsEditDialogOpen(false);
+   
   };
 
   const handleDeleteClick = () => {
     setIsConfirmationDialogOpen(true);
   };
-
+  
   const handleConfirmationDialogClose = () => {
+    
     setIsConfirmationDialogOpen(false);
   };
 
   const handleDelete = () => {
     onDelete(user.id);
     setIsConfirmationDialogOpen(false);
+   
   };
+
+ 
   return (
     <>
       <RootCard>
@@ -145,12 +151,8 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
             <UserField value={user.email} icon={EmailOutlinedIcon} />
             <UserField value={user.phone} icon={PhoneEnabledOutlinedIcon} />
             <UserField value={user.website} icon={LanguageOutlinedIcon} />
-            <UserField
-              value={`${user.street}, ${user.suite}`}
-            />
-            <UserField
-              value={`${user.city}, ${user.zipcode}`}
-            />
+            <UserField value={`${user.street}, ${user.suite}`} />
+            <UserField value={`${user.city}, ${user.zipcode}`} />
             <UserField value={user.companyName} />
           </CardContents>
         </Content>
@@ -184,6 +186,7 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
         onClose={handleConfirmationDialogClose}
         onDelete={handleDelete}
       />
+  
     </>
   );
 };
