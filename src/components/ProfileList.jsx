@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import ProfileCard from './ProfileCard';
-import { getUsers } from '../api';
-import styled from '@emotion/styled';
-import LoadingIndicator from './Loading/LoadingIndicator';
+import React, { useEffect, useState } from "react";
+import ProfileCard from "./ProfileCard";
+import { getUsers } from "../api";
+import styled from "@emotion/styled";
+import LoadingIndicator from "./Loading/LoadingIndicator";
 
 const CardContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 25px 0;
-    gap:30px;
-    width: 100%;    
-    `;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 25px 0;
+  gap: 30px;
+  width: 100%;
+`;
+
 const CardWrapper = styled.div`
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 `;
 
 const ProfileList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     setLoading(true);
     getUsers().then((data) => {
@@ -73,29 +73,35 @@ const ProfileList = () => {
   };
 
   const handleLike = (id) => {
-    const user = users.find(user => user.id === id);
+    const user = users.find((user) => user.id === id);
 
     user.liked = !user.liked;
 
-    setUsers(users.map(i => i.id === id ? user : i))
-  }
-
+    setUsers(users.map((i) => (i.id === id ? user : i)));
+  };
 
   return (
-  <>
-    { loading ? <LoadingIndicator /> :
-  <CardContainer>
-    {users.map((user) => (
-      <CardWrapper key={user.id}>
-        <ProfileCard key={user.id} user={user}
-          onEdit={handleEdit} onDelete={handleDelete} onLike={handleLike} onUpdate={handleUpdateUser} 
-        />
-      </CardWrapper>
-    ))}
-  </CardContainer>
-      }
-      </>
-  )
-}
+    <>
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <CardContainer>
+          {users.map((user) => (
+            <CardWrapper key={user.id}>
+              <ProfileCard
+                key={user.id}
+                user={user}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onLike={handleLike}
+                onUpdate={handleUpdateUser}
+              />
+            </CardWrapper>
+          ))}
+        </CardContainer>
+      )}
+    </>
+  );
+};
 
-export default ProfileList
+export default ProfileList;
