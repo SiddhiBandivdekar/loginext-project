@@ -12,6 +12,7 @@ const ConfirmationDialogue = ({ isOpen, onClose, onDelete }) => {
     onDelete();
     onClose();
   };
+  console.log("sid");
   return (
     <Dialog
       open={isOpen}
