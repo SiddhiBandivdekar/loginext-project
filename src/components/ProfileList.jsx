@@ -44,42 +44,6 @@ const ProfileList = () => {
     setUsers(updatedUsers);
   };
 
-  const handleEdit = (user) => {
-    const updatedUsers = users.map((u) => {
-      if (u.id === user.id) {
-        return {
-          ...u,
-          name: user.name,
-          username: user.username,
-          email: user.email,
-          phone: user.phone,
-          website: user.website,
-          address: {
-            ...u.address,
-            street: user.address.street,
-            suite: user.address.suite,
-            city: user.address.city,
-            zipcode: user.address.zipcode,
-          },
-          company: {
-            ...u.company,
-            name: user.company.name,
-          },
-        };
-      }
-      return u;
-    });
-    setUsers(updatedUsers);
-  };
-
-  const handleLike = (id) => {
-    const user = users.find((user) => user.id === id);
-
-    user.liked = !user.liked;
-
-    setUsers(users.map((i) => (i.id === id ? user : i)));
-  };
-
   return (
     <>
       {loading ? (
@@ -91,9 +55,7 @@ const ProfileList = () => {
               <ProfileCard
                 key={user.id}
                 user={user}
-                onEdit={handleEdit}
                 onDelete={handleDelete}
-                onLike={handleLike}
                 onUpdate={handleUpdateUser}
               />
             </CardWrapper>
