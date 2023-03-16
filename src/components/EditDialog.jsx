@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { Container } from "@mui/system";
 import styled from "@emotion/styled";
-import TextFieldTemplates from "./TextFieldTemplates";
+import { TextField } from "@mui/material";
 
 const StyledContainer = styled(Container)`
   display: flex;
@@ -16,6 +16,50 @@ const StyledContainer = styled(Container)`
   gap: 10px;
   padding-bottom: 15px;
 `;
+
+const TEXT_FIELDS = [
+  { name: "name", label: "Name", type: "text" },
+  {
+    name: "email",
+    label: "Email Address",
+    type: "email",
+  },
+  {
+    name: "phone",
+    label: "Phone Number",
+    type: "tel",
+  },
+  {
+    name: "website",
+    label: "Website",
+    type: "url",
+  },
+  {
+    name: "address.street",
+    label: "Street",
+    type: "text",
+  },
+  {
+    name: "address.suite",
+    label: "Suite",
+    type: "text",
+  },
+  {
+    name: "address.city",
+    label: "City",
+    type: "text",
+  },
+  {
+    name: "address.zipcode",
+    label: "Zipcode",
+    type: "text",
+  },
+  {
+    name: "companyName",
+    label: "Company",
+    type: "text",
+  },
+];
 
 const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
   const [editedUser, setEditedUser] = useState(user);
@@ -57,70 +101,21 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
       <DialogTitle>Edit User</DialogTitle>
       <DialogContent>
         <DialogContentText style={{ overflowY: "scroll", maxHeight: 300 }}>
-          <TextFieldTemplates
-            autoFocus
-            name="name"
-            label="Name"
-            type="text"
-            value={editedUser.name}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="email"
-            label="Email Address"
-            type="email"
-            value={editedUser.email}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="phone"
-            label="Phone Number"
-            type="tel"
-            value={editedUser.phone}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="website"
-            label="Website"
-            type="url"
-            value={editedUser.website}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="address.street"
-            label="Street"
-            type="text"
-            value={editedUser.address.street}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="address.suite"
-            label="Suite"
-            type="text"
-            value={editedUser.address.suite}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="address.city"
-            label="City"
-            type="text"
-            value={editedUser.address.city}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="address.zipcode"
-            label="Zipcode"
-            type="text"
-            value={editedUser.address.zipcode}
-            onChange={handleInputChange}
-          />
-          <TextFieldTemplates
-            name="companyName"
-            label="Company"
-            type="text"
-            value={editedUser.company.name}
-            onChange={handleInputChange}
-          />
+          {TEXT_FIELDS.map(({ name, label, type }) => (
+            
+            <TextField
+              autoFocus
+              margin="dense"
+              name={name}
+              required
+              label={label}
+              type={type}
+              fullWidth
+              value={editedUser[name]}
+              onChange={handleInputChange}
+            />
+          ))}
+        
         </DialogContentText>
       </DialogContent>
       <StyledContainer>
