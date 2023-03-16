@@ -24,14 +24,17 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
       <Dialog open={isOpen} onClose={onClose} >
           <DialogTitle>Edit User</DialogTitle>
           <DialogContent>
-              <TextField autoFocus margin='dense' name='name' label="Name"
+              <TextField autoFocus margin='dense' name='name' label="Name" required
                   type="text" fullWidth value={editedUser.name} onChange={handleInputChange}
               />
-              <TextField margin='dense' name='email' label="Email Address"
+              <TextField margin='dense' name='email' label="Email Address" required
                   type="email" fullWidth value={editedUser.email} onChange={handleInputChange}
               />
-              <TextField margin='dense' name='phone' label="Phone Number"
+              <TextField margin='dense' name='phone' label="Phone Number" required
                   type="tel" fullWidth value={editedUser.phone} onChange={handleInputChange}
+              />
+              <TextField margin='dense' name='website' label="Website" required
+                  type="url" fullWidth value={editedUser.website} onChange={handleInputChange}
               />
           </DialogContent>
 
