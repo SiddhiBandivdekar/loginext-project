@@ -5,7 +5,7 @@ import ProfileList from './components/ProfileList';
 const App = () => {
 
   return (
-    <Container maxWidth="md">
+    <Container style={{maxWidth: "1400px"}}>
       <ProfileList />
     </Container>
   )
