@@ -1,5 +1,14 @@
 import React, { useState }  from 'react'
-import { Dialog, DialogTitle, DialogContent, TextField, Button } from '@mui/material'
+import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogContentText } from '@mui/material'
+import { Container } from '@mui/system';
+import styled from '@emotion/styled';
+
+const StyledContainer = styled(Container)`
+display: flex;
+justify-content: flex-end;
+gap: 10px;
+padding-bottom: 15px;
+`
 
 
 const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
@@ -24,6 +33,7 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
       <Dialog open={isOpen} onClose={onClose} >
           <DialogTitle>Edit User</DialogTitle>
           <DialogContent>
+              <DialogContentText style={{ overflowY: 'scroll', maxHeight: 300 }}>
               <TextField autoFocus margin='dense' name='name' label="Name" required
                   type="text" fullWidth value={editedUser.name} onChange={handleInputChange}
               />
@@ -36,10 +46,22 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
               <TextField margin='dense' name='website' label="Website" required
                   type="url" fullWidth value={editedUser.website} onChange={handleInputChange}
               />
+              <TextField margin='dense' name='street/suite' label="Street/Suite" required
+                  type="text" fullWidth value={`${user.address.street}, ${user.address.suite}`} onChange={handleInputChange}
+              />
+              <TextField margin='dense' name='city/zipcode' label="City/Zipcode" required
+                  type="text" fullWidth value={`${user.address.city}, ${user.address.zipcode}`} onChange={handleInputChange}
+              />
+              <TextField margin='dense' name='company' label="Company" required
+                  type="text" fullWidth value={user.company.name} onChange={handleInputChange}
+                  />
+                  </DialogContentText>
           </DialogContent>
-
-          <Button onClick={handleSubmit} color="primary">Save</Button>
-          <Button onClick={onClose} color="secondary">Cancel</Button>
+        <StyledContainer>
+              <Button onClick={onClose} style={{border: "1px solid lightgray", backgroundColor: "#ececec", color: "gray"}} >Cancel</Button>
+              <Button onClick={handleSubmit}
+             style={{backgroundColor: "#0a66c2", color: "white"}} >Ok</Button>
+              </StyledContainer>
    </Dialog>
   )
 }
