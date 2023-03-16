@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import ProfileCard from "./ProfileCard";
-import { getUsers } from "../api";
 import styled from "@emotion/styled";
 import LoadingIndicator from "./Loading/LoadingIndicator";
 import Snackbar from "@mui/material/Snackbar";
+import { UsersContext } from "../App";
 
 const CardContainer = styled.div`
   display: flex;
@@ -19,21 +19,10 @@ const CardWrapper = styled.div`
 `;
 
 const ProfileList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { users, setUsers, loading } = useContext(UsersContext);
+
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    setLoading(true);
-    //Added 2 second delay, because the API was too fast and wasn't able to see the loading animation
-    setTimeout(() => {
-      getUsers().then((data) => {
-        setUsers(data);
-        setLoading(false);
-      });
-    }, 2000);
-  }, []);
 
   const handleDelete = (id) => {
     const updatedUsers = users.filter((user) => user.id !== id);
