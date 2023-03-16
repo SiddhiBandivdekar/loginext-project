@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 
 const StyledIconButton = styled(IconButton)`
 && {
+  
     padding: 0;
     margin: 0;
     border-radius: 50%;
@@ -17,6 +18,7 @@ const StyledIconButton = styled(IconButton)`
 `
 
 const LikeButton = () => {
+
     const [isLiked, setIsLiked] = useState(false);
 
     const handleClick = () => {
