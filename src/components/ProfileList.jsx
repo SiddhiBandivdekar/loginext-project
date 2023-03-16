@@ -13,7 +13,7 @@ const CardContainer = styled.div`
     width: 100%;    
     `;
     
-    const CardWrapper = styled.div`
+const CardWrapper = styled.div`
     margin-bottom: 15px;
 `;
 
