@@ -23,6 +23,7 @@ const ProfileList = () => {
 
   useEffect(() => {
     setLoading(true);
+    //Added 2 second delay, because the API was too fast and wasn't able to see the loading animation
     setTimeout(() => {
       getUsers().then((data) => {
         setUsers(data);
