@@ -12,6 +12,9 @@ const api = axios.create({
 export const getUsers = () => {
   return api.get("/users").then((response) => {
     return response.data.map((user) => {
+      if (!user) {
+        return {};
+      }
       return {
         id: user.id,
         name: user.name,
