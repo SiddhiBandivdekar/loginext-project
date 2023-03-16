@@ -19,7 +19,6 @@ const RootCard = styled(Card)`
     height: 100%;
     width: 300px;
     border: 1px solid #ececec;
-    
     & .MuiPaper-root {
         box-shadow: none;
     }
