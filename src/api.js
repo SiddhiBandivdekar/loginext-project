@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = "http://localhost:3000";
+const apiURL = "https://demo3500358.mockable.io";
 
 const api = axios.create({
     baseURL: apiURL,
