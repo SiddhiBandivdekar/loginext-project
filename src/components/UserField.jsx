@@ -1,7 +1,6 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 
-
 const UserField = ({value, icon: Icon}) => {
   return (
       <Typography variant="body1" component="p">
