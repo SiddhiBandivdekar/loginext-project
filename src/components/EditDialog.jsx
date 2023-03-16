@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  TextField,
   Button,
   DialogContentText,
 } from "@mui/material";
@@ -24,10 +23,28 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
   const handleInputChange = (event) => {
     if (!event || !event.target) return;
     const { name, value } = event.target;
-    setEditedUser((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name.startsWith("address.")) {
+      setEditedUser((prevState) => ({
+        ...prevState,
+        address: {
+          ...prevState.address,
+          [name.split(".")[1]]: value,
+        },
+      }));
+    } else if (name === "companyName") {
+      setEditedUser((prevState) => ({
+        ...prevState,
+        company: {
+          ...prevState.company,
+          name: value,
+        },
+      }));
+    } else {
+      setEditedUser((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = () => {
@@ -48,46 +65,60 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
             value={editedUser.name}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
+          <TextFieldTemplates
             name="email"
             label="Email Address"
             type="email"
             value={editedUser.email}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
+          <TextFieldTemplates
             name="phone"
             label="Phone Number"
             type="tel"
             value={editedUser.phone}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
+          <TextFieldTemplates
             name="website"
             label="Website"
             type="url"
             value={editedUser.website}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
-            name="street/suite"
-            label="Street/Suite"
+          <TextFieldTemplates
+            name="address.street"
+            label="Street"
             type="text"
-            value={`${user.address.street}, ${user.address.suite}`}
+            value={editedUser.address.street}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
-            name="city/zipcode"
-            label="City/Zipcode"
+          <TextFieldTemplates
+            name="address.suite"
+            label="Suite"
             type="text"
-            value={`${user.address.city}, ${user.address.zipcode}`}
+            value={editedUser.address.suite}
             onChange={handleInputChange}
           />
-           <TextFieldTemplates
-            name="company"
+          <TextFieldTemplates
+            name="address.city"
+            label="City"
+            type="text"
+            value={editedUser.address.city}
+            onChange={handleInputChange}
+          />
+          <TextFieldTemplates
+            name="address.zipcode"
+            label="Zipcode"
+            type="text"
+            value={editedUser.address.zipcode}
+            onChange={handleInputChange}
+          />
+          <TextFieldTemplates
+            name="companyName"
             label="Company"
             type="text"
-            value={user.company.name}
+            value={editedUser.company.name}
             onChange={handleInputChange}
           />
         </DialogContentText>
