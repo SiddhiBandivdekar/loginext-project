@@ -146,12 +146,12 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
             <UserField value={user.phone} icon={PhoneEnabledOutlinedIcon} />
             <UserField value={user.website} icon={LanguageOutlinedIcon} />
             <UserField
-              value={`${user.address.street}, ${user.address.suite}`}
+              value={`${user.street}, ${user.suite}`}
             />
             <UserField
-              value={`${user.address.city}, ${user.address.zipcode}`}
+              value={`${user.city}, ${user.zipcode}`}
             />
-            <UserField value={user.company.name} />
+            <UserField value={user.companyName} />
           </CardContents>
         </Content>
         <Actions>

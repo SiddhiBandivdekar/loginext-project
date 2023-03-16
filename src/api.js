@@ -11,27 +11,26 @@ const api = axios.create({
 
 export const getUsers = () => {
   return api.get("/users").then((response) => {
-      return response.data.map((user) => {
-          if (!user) {
-              return {};
-        }
-      return {
+    return response.data.map((user) => {
+      if (!user) {
+        return {};
+      }
+      console.log(user);
+      const newUser = {
         id: user.id,
         name: user.name,
         username: user.username,
         email: user.email,
         phone: user.phone,
         website: user.website,
-        address: {
-          street: user.address.street,
-          suite: user.address.suite,
-          city: user.address.city,
-          zipcode: user.address.zipcode,
-        },
-        company: {
-          name: user.company.name,
-        },
+        street: user.address.street,
+        suite: user.address.suite,
+        city: user.address.city,
+        zipcode: user.address.zipcode,
+        companyName: user.company.name,
       };
+      console.log(newUser);
+      return newUser;
     });
   });
 };

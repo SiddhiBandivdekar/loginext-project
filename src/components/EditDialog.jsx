@@ -35,22 +35,22 @@ const TEXT_FIELDS = [
     type: "url",
   },
   {
-    name: "address.street",
+    name: "street",
     label: "Street",
     type: "text",
   },
   {
-    name: "address.suite",
+    name: "suite",
     label: "Suite",
     type: "text",
   },
   {
-    name: "address.city",
+    name: "city",
     label: "City",
     type: "text",
   },
   {
-    name: "address.zipcode",
+    name: "zipcode",
     label: "Zipcode",
     type: "text",
   },
@@ -67,28 +67,11 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
   const handleInputChange = (event) => {
     if (!event || !event.target) return;
     const { name, value } = event.target;
-    if (name.startsWith("address.")) {
-      setEditedUser((prevState) => ({
-        ...prevState,
-        address: {
-          ...prevState.address,
-          [name.split(".")[1]]: value,
-        },
-      }));
-    } else if (name === "companyName") {
-      setEditedUser((prevState) => ({
-        ...prevState,
-        company: {
-          ...prevState.company,
-          name: value,
-        },
-      }));
-    } else {
-      setEditedUser((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
+
+    setEditedUser((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = () => {
@@ -102,7 +85,6 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
       <DialogContent>
         <DialogContentText style={{ overflowY: "scroll", maxHeight: 300 }}>
           {TEXT_FIELDS.map(({ name, label, type }) => (
-            
             <TextField
               autoFocus
               margin="dense"
@@ -115,7 +97,6 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
               onChange={handleInputChange}
             />
           ))}
-        
         </DialogContentText>
       </DialogContent>
       <StyledContainer>
