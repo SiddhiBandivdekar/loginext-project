@@ -23,10 +23,12 @@ const ProfileList = () => {
 
   useEffect(() => {
     setLoading(true);
-    getUsers().then((data) => {
-      setUsers(data);
-      setLoading(false);
-    });
+    setTimeout(() => {
+      getUsers().then((data) => {
+        setUsers(data);
+        setLoading(false);
+      });
+    }, 2000);
   }, []);
 
   const handleDelete = (id) => {
