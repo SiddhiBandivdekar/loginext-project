@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Container } from "@mui/system";
 import styled from "@emotion/styled";
+import TextFieldTemplates from "./TextFieldTemplates";
 
 const StyledContainer = styled(Container)`
   display: flex;
@@ -39,74 +40,53 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
       <DialogTitle>Edit User</DialogTitle>
       <DialogContent>
         <DialogContentText style={{ overflowY: "scroll", maxHeight: 300 }}>
-          <TextField
+          <TextFieldTemplates
             autoFocus
-            margin="dense"
             name="name"
             label="Name"
-            required
             type="text"
-            fullWidth
             value={editedUser.name}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="email"
             label="Email Address"
-            required
             type="email"
-            fullWidth
             value={editedUser.email}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="phone"
             label="Phone Number"
-            required
             type="tel"
-            fullWidth
             value={editedUser.phone}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="website"
             label="Website"
-            required
             type="url"
-            fullWidth
             value={editedUser.website}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="street/suite"
             label="Street/Suite"
-            required
             type="text"
-            fullWidth
             value={`${user.address.street}, ${user.address.suite}`}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="city/zipcode"
             label="City/Zipcode"
-            required
             type="text"
-            fullWidth
             value={`${user.address.city}, ${user.address.zipcode}`}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
+           <TextFieldTemplates
             name="company"
             label="Company"
-            required
             type="text"
-            fullWidth
             value={user.company.name}
             onChange={handleInputChange}
           />
