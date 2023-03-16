@@ -86,6 +86,7 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
         <DialogContentText style={{ overflowY: "scroll", maxHeight: 300 }}>
           {TEXT_FIELDS.map(({ name, label, type }) => (
             <TextField
+              key={name}
               autoFocus
               margin="dense"
               name={name}

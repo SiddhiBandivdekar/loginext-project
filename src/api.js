@@ -15,7 +15,6 @@ export const getUsers = () => {
       if (!user) {
         return {};
       }
-      console.log(user);
       const newUser = {
         id: user.id,
         name: user.name,
@@ -29,7 +28,6 @@ export const getUsers = () => {
         zipcode: user.address.zipcode,
         companyName: user.company.name,
       };
-      console.log(newUser);
       return newUser;
     });
   });
