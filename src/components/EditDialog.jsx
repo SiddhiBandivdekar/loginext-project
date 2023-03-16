@@ -6,6 +6,7 @@ const EditDialog = ({ user, isOpen, onClose, onSubmit }) => {
     const [editedUser, setEditedUser] = useState(user);
 
     const handleInputChange = event => {
+        
         if (!event || !event.target) return;
         const { name, value } = event.target;
         setEditedUser(prevState => ({
