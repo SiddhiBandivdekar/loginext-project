@@ -6,12 +6,12 @@ import styled from "@emotion/styled";
 
 const StyledIconButton = styled(IconButton)`
   && {
-    padding: 0;
+    padding: 10px;
     margin: 0;
     border-radius: 50%;
     color: red;
     &:hover {
-      background-color: transparent;
+      background-color: #ececec;
     }
   }
 `;
@@ -24,10 +24,7 @@ const LikeButton = () => {
   };
 
   return (
-    <StyledIconButton
-      color={isLiked ? "secondary" : "default"}
-      onClick={handleClick}
-    >
+    <StyledIconButton onClick={handleClick}>
       {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
     </StyledIconButton>
   );

@@ -60,10 +60,10 @@ const ActionsCard = styled(CardActions)`
   width: 80%;
 `;
 
-const ActionButton = styled(IconButton)`
-  border-radius: 0;
+const ActionGroup = styled.div`
   display: flex;
-  padding: 10px 25px;
+  margin: 0 10px;
+  padding-right: 14px;
   justify-content: ${(props) =>
     props.position === "left"
       ? "flex-start"
@@ -75,6 +75,11 @@ const ActionButton = styled(IconButton)`
   &:last-child {
     border-right: none;
   }
+`;
+
+const ActionButton = styled(IconButton)`
+  border-radius: 50%;
+  padding: 10px;
 `;
 
 const AvatarContainer = styled(Card)`
@@ -151,15 +156,19 @@ const ProfileCard = ({ user, onDelete, onUpdate }) => {
         </Content>
         <Actions>
           <ActionsCard>
-            <ActionButton position="left">
+            <ActionGroup position="left">
               <LikeButton />
-            </ActionButton>
-            <ActionButton position="center" onClick={handleEditClick}>
-              <BorderColorOutlinedIcon />
-            </ActionButton>
-            <ActionButton position="right" onClick={handleDeleteClick}>
-              <DeleteIcon />
-            </ActionButton>
+            </ActionGroup>
+            <ActionGroup position="center">
+              <ActionButton onClick={handleEditClick}>
+                <BorderColorOutlinedIcon />
+              </ActionButton>
+            </ActionGroup>
+            <ActionGroup position="right">
+              <ActionButton onClick={handleDeleteClick}>
+                <DeleteIcon />
+              </ActionButton>
+            </ActionGroup>
           </ActionsCard>
         </Actions>
 
